@@ -5,6 +5,7 @@
   "main": "plugin.js",
   "scripts": {
     "lint": "npm run lint:standard",
+    "lint:fix": "standard --fix --verbose | snazzy",
     "lint:standard": "standard --verbose | snazzy",
     "unit": "tap -J test/plugin.test.js",
     "unit:report": "tap -J test/plugin.test.js --cov --coverage-report=html --coverage-report=cobertura | tee out.tap",
