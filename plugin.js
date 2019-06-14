@@ -38,26 +38,16 @@ function fastifyMailer (fastify, options, next) {
       )
     }
 
-    const closeNamedInstance = (fastify, done) => {
-      fastify.mailer[namespace].close(done)
-    }
-
     fastify.mailer[namespace] = transport
-    fastify.addHook('onClose', closeNamedInstance)
   } else {
     if (fastify.mailer) {
       return next(new Error('fastify-mailer has already been registered'))
     } else {
       fastify.decorate('mailer', transport)
-      fastify.addHook('onClose', close)
     }
   }
 
   next()
-}
-
-function close (fastify, done) {
-  fastify.mailer.close(done)
 }
 
 module.exports = fp(fastifyMailer, {
