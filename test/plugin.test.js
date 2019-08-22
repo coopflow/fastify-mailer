@@ -111,7 +111,7 @@ test('Should throw when trying to register multiple instances without giving a n
     })
 
   fastify.ready((errors) => {
-    t.is(errors.message, `fastify-mailer has already been registered`)
+    t.is(errors.message, 'fastify-mailer has already been registered')
   })
 })
 
@@ -126,7 +126,7 @@ test('Should throw on bad transporter initialization', (t) => {
   })
 
   fastify.ready((errors) => {
-    t.is(errors.message, `Cannot create property 'mailer' on string 'this will trigger a throw'`)
+    t.is(errors.message, "Cannot create property 'mailer' on string 'this will trigger a throw'")
   })
 })
 
@@ -139,7 +139,7 @@ test('Should throw on bad custom transporter initialization', (t) => {
   fastify.register(fastifyMailer, { transport: 'this will trigger a throw' })
 
   fastify.ready((errors) => {
-    t.is(errors.message, `Cannot create property 'mailer' on string 'this will trigger a throw'`)
+    t.is(errors.message, "Cannot create property 'mailer' on string 'this will trigger a throw'")
   })
 })
 
