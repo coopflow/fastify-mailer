@@ -9,12 +9,12 @@
     "lint": "npm run lint:standard",
     "lint:fix": "standard --fix --verbose | snazzy",
     "lint:standard": "standard --verbose | snazzy",
-    "unit": "tap -J test/plugin.test.js",
-    "unit:junit": "tap-mocha-reporter xunit < out.tap > test/junit-testresults.xml",
-    "unit:report": "tap -J test/plugin.test.js --cov --coverage-report=html --coverage-report=cobertura | tee out.tap",
     "test": "npm run lint && npm run unit",
     "test:ci": "npm run unit -- --cov --coverage-report=lcov",
-    "test:report": "npm run lint && npm run unit:report"
+    "test:report": "npm run lint && npm run unit:report",
+    "unit": "tap -J test/plugin.test.js",
+    "unit:junit": "tap-mocha-reporter xunit < out.tap > test/junit-testresults.xml",
+    "unit:report": "tap -J test/plugin.test.js --cov --coverage-report=html --coverage-report=cobertura | tee out.tap"
   },
   "repository": {
     "type": "git",
