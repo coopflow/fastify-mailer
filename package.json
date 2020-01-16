@@ -45,15 +45,10 @@
     "fastify": "^2.11.0",
     "nodemailer": "*",
     "snazzy": "^8.0.0",
-    "standard": "^14.0.0",
-    "tap": "^12.7.0"
+    "standard": "^14.3.1",
+    "tap": "^14.10.6"
   },
   "peerDependencies": {
     "nodemailer": ">=6.0.0"
-  },
-  "greenkeeper": {
-    "ignore": [
-      "tap"
-    ]
   }
 }
