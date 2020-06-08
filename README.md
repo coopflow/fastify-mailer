@@ -5,7 +5,6 @@
 [![Build Status](https://travis-ci.com/coopflow/fastify-mailer.svg?branch=master)](https://travis-ci.com/coopflow/fastify-mailer)
 [![Coverage Status](https://coveralls.io/repos/github/coopflow/fastify-mailer/badge.svg?branch=master)](https://coveralls.io/github/coopflow/fastify-mailer?branch=master)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
-[![Greenkeeper badge](https://badges.greenkeeper.io/coopflow/fastify-mailer.svg)](https://greenkeeper.io/)
 
 [Nodemailer](https://www.nodemailer.com) instance initialization and encapsulation in [fastify](https://www.github.com/fastify/fastify) framework.
 
