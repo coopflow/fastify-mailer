@@ -1,6 +1,6 @@
 {
   "name": "fastify-mailer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Nodemailer instance initialization and encapsulation in fastify framework",
   "main": "plugin.js",
   "scripts": {
