@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.1.0",
-    "fastify": "^3.0.0-rc.4",
+    "fastify": "^3.0.0",
     "nodemailer": "*",
     "snazzy": "^8.0.0",
     "standard": "^14.3.4",
