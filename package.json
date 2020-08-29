@@ -38,15 +38,15 @@
     "node": ">=10"
   },
   "dependencies": {
-    "fastify-plugin": "^2.0.0"
+    "fastify-plugin": "^2.3.3"
   },
   "devDependencies": {
     "coveralls": "^3.1.0",
-    "fastify": "^3.0.0",
-    "nodemailer": "*",
+    "fastify": "^3.3.0",
+    "nodemailer": "^6.4.11",
     "snazzy": "^8.0.0",
     "standard": "^14.3.4",
-    "tap": "^14.10.7"
+    "tap": "^14.10.8"
   },
   "peerDependencies": {
     "nodemailer": ">=6.0.0"
