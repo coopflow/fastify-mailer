@@ -46,7 +46,7 @@
     "fastify": "^3.4.1",
     "nodemailer": "^6.4.11",
     "snazzy": "^9.0.0",
-    "standard": "^15.0.0",
+    "standard": "^16.0.0",
     "tap": "^14.10.8"
   },
   "peerDependencies": {
