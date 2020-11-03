@@ -2,7 +2,6 @@
 
 [![NPM version](https://img.shields.io/npm/v/fastify-mailer.svg?style=flat)](https://www.npmjs.com/package/fastify-mailer)
 [![GitHub CI](https://github.com/coopflow/fastify-mailer/workflows/GitHub%20CI/badge.svg)](https://github.com/coopflow/fastify-mailer/actions?workflow=GitHub+CI)
-[![Build Status](https://travis-ci.com/coopflow/fastify-mailer.svg?branch=master)](https://travis-ci.com/coopflow/fastify-mailer)
 [![Coverage Status](https://coveralls.io/repos/github/coopflow/fastify-mailer/badge.svg?branch=master)](https://coveralls.io/github/coopflow/fastify-mailer?branch=master)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
