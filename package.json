@@ -47,7 +47,7 @@
     "nodemailer": "^6.4.11",
     "snazzy": "^9.0.0",
     "standard": "^16.0.0",
-    "tap": "^14.10.8"
+    "tap": "^15.0.1"
   },
   "peerDependencies": {
     "nodemailer": ">=6.0.0"
