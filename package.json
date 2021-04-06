@@ -43,10 +43,10 @@
   },
   "devDependencies": {
     "coveralls": "^3.1.0",
-    "fastify": "^3.4.1",
-    "nodemailer": "^6.4.11",
+    "fastify": "^3.14.1",
+    "nodemailer": "^6.5.0",
     "snazzy": "^9.0.0",
-    "standard": "^16.0.0",
+    "standard": "^16.0.3",
     "tap": "^15.0.2"
   },
   "peerDependencies": {
