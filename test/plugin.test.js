@@ -58,7 +58,7 @@ test('fastify.mailer.test should throw with duplicate namespaces', (t) => {
     })
 
   fastify.ready((errors) => {
-    t.is(errors.message, `fastify-mailer '${namespace}' instance name has already been registered`)
+    t.equal(errors.message, `fastify-mailer '${namespace}' instance name has already been registered`)
   })
 })
 
@@ -92,7 +92,7 @@ test('Should not throw if registered within different scopes (with and without n
 
   fastify.ready((errors) => {
     t.error(errors)
-    t.is(errors, undefined)
+    t.equal(errors, undefined)
   })
 })
 
@@ -111,7 +111,7 @@ test('Should throw when trying to register multiple instances without giving a n
     })
 
   fastify.ready((errors) => {
-    t.is(errors.message, 'fastify-mailer has already been registered')
+    t.equal(errors.message, 'fastify-mailer has already been registered')
   })
 })
 
@@ -126,7 +126,7 @@ test('Should throw on bad transporter initialization', (t) => {
   })
 
   fastify.ready((errors) => {
-    t.is(errors.message, "Cannot create property 'mailer' on string 'this will trigger a throw'")
+    t.equal(errors.message, "Cannot create property 'mailer' on string 'this will trigger a throw'")
   })
 })
 
@@ -139,7 +139,7 @@ test('Should throw on bad custom transporter initialization', (t) => {
   fastify.register(fastifyMailer, { transport: 'this will trigger a throw' })
 
   fastify.ready((errors) => {
-    t.is(errors.message, "Cannot create property 'mailer' on string 'this will trigger a throw'")
+    t.equal(errors.message, "Cannot create property 'mailer' on string 'this will trigger a throw'")
   })
 })
 
@@ -155,7 +155,7 @@ test('Should throw if initialized without a transporter', (t) => {
 
   fastify.ready((errors) => {
     t.ok(errors)
-    t.is(errors.message, 'You must provide a valid transport configuration object, connection url or a transport plugin instance')
+    t.equal(errors.message, 'You must provide a valid transport configuration object, connection url or a transport plugin instance')
   })
 })
 
@@ -184,8 +184,8 @@ test('Should be able to use `sendMail()` method with a singular fastify-mailer i
     mailer.sendMail(email, (errors, info) => {
       t.error(errors)
 
-      t.strictEqual(info.envelope.from, email.from)
-      t.strictEqual(info.envelope.to[0], email.to)
+      t.equal(info.envelope.from, email.from)
+      t.equal(info.envelope.to[0], email.to)
       t.ok(info.message.indexOf(`"subject":"${email.subject}"`))
       t.ok(info.message.indexOf(`"text":"${email.text}"`))
     })
@@ -223,8 +223,8 @@ test('Should be able to use `sendMail()` method with multiple namespaced fastify
     mailer.test.sendMail(email, (errors, info) => {
       t.error(errors)
 
-      t.strictEqual(info.envelope.from, email.from)
-      t.strictEqual(info.envelope.to[0], email.to)
+      t.equal(info.envelope.from, email.from)
+      t.equal(info.envelope.to[0], email.to)
       t.ok(info.message.indexOf(`"subject":"${email.subject}"`))
       t.ok(info.message.indexOf(`"text":"${email.text}"`))
     })
@@ -232,8 +232,8 @@ test('Should be able to use `sendMail()` method with multiple namespaced fastify
     mailer.anotherTest.sendMail(email, (errors, info) => {
       t.error(errors)
 
-      t.strictEqual(info.envelope.from, email.from)
-      t.strictEqual(info.envelope.to[0], email.to)
+      t.equal(info.envelope.from, email.from)
+      t.equal(info.envelope.to[0], email.to)
       t.ok(info.message.indexOf(`"subject":"${email.subject}"`))
       t.ok(info.message.indexOf(`"text":"${email.text}"`))
     })
@@ -244,7 +244,7 @@ test('Should be able to use `sendMail()` method with a custom defined transporte
   t.plan(5)
 
   const fastify = Fastify()
-  t.tearDown(() => fastify.close())
+  t.teardown(() => fastify.close())
 
   // Inspired by: https://nodemailer.com/plugins/create/#transports
   const customTransporter = {
@@ -278,8 +278,8 @@ test('Should be able to use `sendMail()` method with a custom defined transporte
     mailer.sendMail(email, (errors, info) => {
       t.error(errors)
 
-      t.strictEqual(info.envelope.from, email.from)
-      t.strictEqual(info.envelope.to[0], email.to)
+      t.equal(info.envelope.from, email.from)
+      t.equal(info.envelope.to[0], email.to)
 
       t.match(info.messageId, /^<[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}@doe.tld>$/)
     })
@@ -311,8 +311,8 @@ test('Should be able to use `sendMail()` with initialized defaults', (t) => {
     mailer.sendMail(email, (errors, info) => {
       t.error(errors)
 
-      t.strictEqual(info.envelope.from, 'john@doe.tld')
-      t.strictEqual(info.envelope.to[0], email.to)
+      t.equal(info.envelope.from, 'john@doe.tld')
+      t.equal(info.envelope.to[0], email.to)
       t.ok(info.message.indexOf(`"subject":"${email.subject}"`))
       t.ok(info.message.indexOf(`"text":"${email.text}"`))
     })
