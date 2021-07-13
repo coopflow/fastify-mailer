@@ -43,15 +43,15 @@
     "fastify-plugin": "^3.0.0"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.2",
-    "coveralls": "^3.1.0",
-    "fastify": "^3.17.0",
-    "nodemailer": "^6.6.1",
+    "@types/nodemailer": "^6.4.4",
+    "coveralls": "^3.1.1",
+    "fastify": "^3.19.1",
+    "nodemailer": "^6.6.2",
     "snazzy": "^9.0.0",
     "standard": "^16.0.3",
     "tap": "^15.0.9",
     "tsd": "^0.17.0",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.5"
   },
   "peerDependencies": {
     "nodemailer": ">=6.0.0"
