@@ -319,6 +319,34 @@ fastify.listen(3000, (errors) => {
 
 For more information on transports you can take a look at [Nodemailer dedicated documentation](https://nodemailer.com/transports/).
 
+## Typescript users
+
+Types for nodemailer are not officially supported by its author Andris Reinman.
+
+If you want to use the DefinitelyTyped community maintained types:
+- first you need to install the package with :
+```shell
+npm install -D @types/nodemailer
+```
+- then you must re-declare the `mailer` interface in the `fastify` module within your own code to add the properties you expect.
+
+#### example :
+
+```ts
+import { Transporter } from "nodemailer";
+
+export interface FastifyMailerNamedInstance {
+  [namespace: string]: Transporter;
+}
+export type FastifyMailer = FastifyMailerNamedInstance & Transporter;
+
+declare module "fastify" {
+  interface FastifyInstance {
+    mailer: FastifyMailer;
+  }
+}
+```
+
 ## Documentation
 
 See [Nodemailer documentation](https://nodemailer.com/about/).
