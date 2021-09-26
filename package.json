@@ -9,7 +9,6 @@
     "lint": "npm run lint:standard",
     "lint:fix": "standard --fix --verbose | snazzy",
     "lint:standard": "standard --verbose | snazzy",
-    "lint:standard-fix": "standard --fix --verbose | snazzy",
     "test": "npm run lint && npm run unit",
     "test:ci": "npm run unit -- --cov --coverage-report=lcov",
     "test:report": "npm run lint && npm run unit:report",
@@ -43,11 +42,11 @@
   },
   "devDependencies": {
     "coveralls": "^3.1.1",
-    "fastify": "^3.19.1",
-    "nodemailer": "^6.6.2",
+    "fastify": "^3.21.6",
+    "nodemailer": "^6.6.5",
     "snazzy": "^9.0.0",
     "standard": "^16.0.3",
-    "tap": "^15.0.9"
+    "tap": "^15.0.10"
   },
   "peerDependencies": {
     "nodemailer": ">=6.0.0"
