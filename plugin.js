@@ -24,7 +24,7 @@ function fastifyMailer (fastify, options, next) {
 
   if (namespace) {
     if (!fastify.mailer) {
-      fastify.decorate('mailer', {})
+      fastify.decorate('mailer', Object.create(null))
     }
 
     if (fastify.mailer[namespace]) {
