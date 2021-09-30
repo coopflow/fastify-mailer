@@ -23,11 +23,11 @@ function fastifyMailer (fastify, options, next) {
   }
 
   if (namespace) {
-    if (!fastify.mailer) {
+    if (transporter[namespace]) {
+      return next(new Error(`fastify-mailer '${namespace}' is a reserved keyword`))
+    } else if (!fastify.mailer) {
       fastify.decorate('mailer', Object.create(null))
-    }
-
-    if (fastify.mailer[namespace]) {
+    } else if (Object.prototype.hasOwnProperty.call(fastify.mailer, namespace)) {
       return next(
         new Error(`fastify-mailer '${namespace}' instance name has already been registered`)
       )

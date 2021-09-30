@@ -1,7 +1,6 @@
 'use strict'
 
-const t = require('tap')
-const test = t.test
+const { test } = require('tap')
 const Fastify = require('fastify')
 const fastifyMailer = require('../plugin')
 
@@ -9,7 +8,7 @@ test('fastify.mailer namespace should exist', (t) => {
   t.plan(3)
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.register(fastifyMailer, {
     transport: { jsonTransport: true }
@@ -26,7 +25,7 @@ test('fastify.mailer.test namespace should exist', (t) => {
   t.plan(3)
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.register(fastifyMailer, {
     namespace: 'test',
@@ -45,7 +44,7 @@ test('fastify.mailer.test should throw with duplicate namespaces', (t) => {
 
   const fastify = Fastify()
   const namespace = 'test'
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify
     .register(fastifyMailer, {
@@ -62,11 +61,28 @@ test('fastify.mailer.test should throw with duplicate namespaces', (t) => {
   })
 })
 
-test('Should not throw if registered within different scopes (with and without namespaced instances)', (t) => {
+test('fastify-mailer should throw when trying to register an instance with a reserved `namespace` keyword', t => {
+  t.plan(1)
+
+  const fastify = Fastify()
+  const namespace = 'transporter'
+  t.teardown(fastify.close.bind(fastify))
+
+  fastify.register(fastifyMailer, {
+    namespace,
+    transport: { jsonTransport: true }
+  })
+
+  fastify.ready(errors => {
+    t.equal(errors.message, `fastify-mailer '${namespace}' is a reserved keyword`)
+  })
+})
+
+test('fastify-mailer should not throw if registered within different scopes (with and without namespaced instances)', (t) => {
   t.plan(2)
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.register(function scopeOne (instance, opts, next) {
     instance.register(fastifyMailer, {
@@ -96,11 +112,11 @@ test('Should not throw if registered within different scopes (with and without n
   })
 })
 
-test('Should throw when trying to register multiple instances without giving a namespace', (t) => {
+test('fastify-mailer should throw when trying to register multiple instances without giving a namespace', (t) => {
   t.plan(1)
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify
     .register(fastifyMailer, {
@@ -115,11 +131,11 @@ test('Should throw when trying to register multiple instances without giving a n
   })
 })
 
-test('Should throw on bad transporter initialization', (t) => {
+test('fastify-mailer should throw on bad transporter initialization', (t) => {
   t.plan(1)
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.register(fastifyMailer, {
     transport: 'this will trigger a throw'
@@ -130,11 +146,11 @@ test('Should throw on bad transporter initialization', (t) => {
   })
 })
 
-test('Should throw on bad custom transporter initialization', (t) => {
+test('fastify-mailer should throw on bad custom transporter initialization', (t) => {
   t.plan(1)
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.register(fastifyMailer, { transport: 'this will trigger a throw' })
 
@@ -143,11 +159,11 @@ test('Should throw on bad custom transporter initialization', (t) => {
   })
 })
 
-test('Should throw if initialized without a transporter', (t) => {
+test('fastify-mailer should throw if initialized without a transporter', (t) => {
   t.plan(2)
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.register(fastifyMailer, {
     defaults: { from: 'john@doe.tld' }
@@ -159,7 +175,7 @@ test('Should throw if initialized without a transporter', (t) => {
   })
 })
 
-test('Should be able to use `sendMail()` method with a singular fastify-mailer instance', (t) => {
+test('fastify-mailer should be able to use `sendMail()` method with a singular fastify-mailer instance', (t) => {
   t.plan(6)
 
   const email = {
@@ -170,7 +186,7 @@ test('Should be able to use `sendMail()` method with a singular fastify-mailer i
   }
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.register(fastifyMailer, {
     transport: { jsonTransport: true }
@@ -192,7 +208,7 @@ test('Should be able to use `sendMail()` method with a singular fastify-mailer i
   })
 })
 
-test('Should be able to use `sendMail()` method with multiple namespaced fastify-mailer instances', (t) => {
+test('fastify-mailer should be able to use `sendMail()` method with multiple namespaced fastify-mailer instances', (t) => {
   t.plan(11)
 
   const email = {
@@ -203,7 +219,7 @@ test('Should be able to use `sendMail()` method with multiple namespaced fastify
   }
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify
     .register(fastifyMailer, {
@@ -240,11 +256,11 @@ test('Should be able to use `sendMail()` method with multiple namespaced fastify
   })
 })
 
-test('Should be able to use `sendMail()` method with a custom defined transporter', (t) => {
+test('fastify-mailer should be able to use `sendMail()` method with a custom defined transporter', (t) => {
   t.plan(5)
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   // Inspired by: https://nodemailer.com/plugins/create/#transports
   const customTransporter = {
@@ -286,7 +302,7 @@ test('Should be able to use `sendMail()` method with a custom defined transporte
   })
 })
 
-test('Should be able to use `sendMail()` with initialized defaults', (t) => {
+test('fastify-mailer should be able to use `sendMail()` with initialized defaults', (t) => {
   t.plan(6)
 
   const email = {
@@ -296,7 +312,7 @@ test('Should be able to use `sendMail()` with initialized defaults', (t) => {
   }
 
   const fastify = Fastify()
-  t.teardown(() => fastify.close())
+  t.teardown(fastify.close.bind(fastify))
 
   fastify.register(fastifyMailer, {
     defaults: { from: 'john@doe.tld' },
