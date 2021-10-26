@@ -254,23 +254,34 @@ fastify.listen(3000, (errors) => {
 
 - `transport`: is a *required* transport configuration object, connection url or a transport plugin instance.
 
-#### example using SES transport plugin:
+#### example using SES transport:
 
 ```js
 'use strict'
 
 const fastify = require('fastify')({ logger: true })
-const aws = require('aws-sdk')
+const aws = require('@aws-sdk/client-ses')
 
-// configure AWS SDK
-aws.config.loadFromPath('config.json')
+/**
+ * configure AWS SDK:
+ *
+ * Use environment variables or Secrets as a Service solutions
+ * to store your secrets.
+ *
+ * NB: do not hardcode your secrets !
+ */
+process.env.AWS_ACCESS_KEY_ID = 'aws_access_key_id_here'
+process.env.AWS_SECRET_ACCESS_KEY = 'aws_secret_access_key_here'
+
+const ses = new aws.SES({
+  apiVersion: '2010-12-01',
+  region: 'us-east-1'
+})
 
 fastify.register(require('fastify-mailer'), {
   defaults: { from: 'John Doe <john.doe@example.tld>' },
   transport: {
-    SES: new aws.SES({
-        apiVersion: '2010-12-01'
-    })
+    SES: { ses, aws }
   }
 })
 
@@ -281,11 +292,14 @@ fastify.get('/send', (request, reply) => {
     to: 'someone@example.tld',
     subject: 'example',
     text: 'hello world !',
-    ses: { // optional extra arguments for SendRawEmail
-        Tags: [{
-            Name: 'tag name',
-            Value: 'tag value'
-        }]
+    ses: {
+      // optional extra arguments for SendRawEmail
+      Tags: [
+        {
+          Name: 'foo',
+          Value: 'bar'
+        }
+      ]
     }
   }, (errors, info) => {
     if (errors) {
