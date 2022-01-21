@@ -38,11 +38,11 @@
   },
   "devDependencies": {
     "coveralls": "^3.1.1",
-    "fastify": "^3.24.0",
-    "nodemailer": "^6.7.1",
+    "fastify": "^3.27.0",
+    "nodemailer": "^6.7.2",
     "snazzy": "^9.0.0",
     "standard": "^16.0.4",
-    "tap": "^15.1.2"
+    "tap": "^15.1.6"
   },
   "peerDependencies": {
     "nodemailer": ">=6.0.0"
