@@ -4,16 +4,13 @@
   "description": "Nodemailer instance initialization and encapsulation in fastify framework",
   "main": "plugin.js",
   "scripts": {
-    "coverage": "npm run unit -- --cov --coverage-report=html",
-    "coveralls": "npm run unit -- --cov",
     "lint": "standard --verbose | snazzy",
     "lint:fix": "standard --fix --verbose | snazzy",
     "test": "npm run lint && npm run unit",
     "test:ci": "npm run unit -- --cov --coverage-report=lcov",
-    "test:report": "npm run lint && npm run unit:report",
     "unit": "tap -J test/plugin.test.js",
-    "unit:report": "tap -J test/plugin.test.js --cov --coverage-report=html --coverage-report=cobertura | tee out.tap",
-    "unit:verbose": "tap -J test/plugin.test.js -Rspec"
+    "unit:report": "npm run unit -- --cov --coverage-report=html",
+    "unit:verbose": "npm run unit -- -Rspec"
   },
   "repository": {
     "type": "git",
@@ -41,11 +38,11 @@
   },
   "devDependencies": {
     "coveralls": "^3.1.1",
-    "fastify": "^3.24.0",
-    "nodemailer": "^6.7.1",
+    "fastify": "^3.27.0",
+    "nodemailer": "^6.7.2",
     "snazzy": "^9.0.0",
     "standard": "^16.0.4",
-    "tap": "^15.1.2"
+    "tap": "^15.1.6"
   },
   "peerDependencies": {
     "nodemailer": ">=6.0.0"
