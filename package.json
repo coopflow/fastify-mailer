@@ -34,11 +34,11 @@
     "node": ">=10"
   },
   "dependencies": {
-    "fastify-plugin": "^3.0.0"
+    "fastify-plugin": "^3.0.1"
   },
   "devDependencies": {
     "coveralls": "^3.1.1",
-    "fastify": "^3.27.0",
+    "fastify": "^3.27.1",
     "nodemailer": "^6.7.2",
     "snazzy": "^9.0.0",
     "standard": "^16.0.4",
