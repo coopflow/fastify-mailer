@@ -42,12 +42,12 @@
   "devDependencies": {
     "@types/nodemailer": "^6.4.4",
     "coveralls": "^3.1.1",
-    "fastify": "^3.27.1",
+    "fastify": "^3.27.2",
     "nodemailer": "^6.7.2",
     "standard": "^16.0.4",
     "tap": "^15.1.6",
     "tsd": "^0.19.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.2"
   },
   "peerDependencies": {
     "nodemailer": ">=6.0.0"
